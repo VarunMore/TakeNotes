@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% block title %}home {% endblock %} {% block body %}
+<div class="container my-3">
+  <h2>Take Notes</h2>
+  <form action="/" , method="POST">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        name="title"
+        id="title"
+        placeholder="Title"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="note" class="form-label">Take a note</label>
+      <textarea
+        class="form-control"
+        name="note"
+        id="note"
+        placeholder="Take a note"
+        rows="3"
+      ></textarea>
+    </div>
+    <button type="submit" class="btn btn-outline-secondary mb-5">Add Note </button>
+  </form>
+ {% if myresult| length == 0 %}
+   <div class="alert alert-info" role="alert">
+ No Recods Found, Add Notes
+</div>
+ {% else %}
+    <!-- Table -->
+  <div class="table-responsive">
+    <table class="table table-dark table-striped">
+      <thead>
+        <th>#</th>
+        <th>Title</th>
+        <th>Notes</th>
+        <th colspan="2">Actions</th>
+      </thead>
+      <tbody>
+        {% for id, title, note in myresult %}
+        <tr class="align-top">
+          <td>{{loop.index}}</td>
+          <td>{{title}}</td>
+          <td>{{note}}</td>
+          <td>
+              <a
+                href="/update/{{id}}"
+                align="center"
+                type="button"
+                class="btn btn-outline-success"
+              >
+              Update
+              </a>
+          </td>
+          <td>
+                <a href="/delete/{{id}}" align="center"
+                type="button"
+                class="btn btn-outline-danger""> Delete </a>
+           
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+ {% endif %}
+ 
+</div>
+{% endblock %}

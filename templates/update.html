@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block title %}home {% endblock %} {% block body %}
+<div class="container my-3">
+  <h2>Update Notes</h2>
+  {%for title, note in result %}
+  <form  method="POST">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        name="title"
+        id="title"
+        placeholder="Title"
+        value="{{title}}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="note" class="form-label">Take a note</label>
+      <textarea
+        class="form-control"
+        name="note"
+        id="note"
+        placeholder="Take a note"
+        rows="3"
+      >
+{{note}}</textarea
+      >
+    </div>
+    <button type="submit" class="btn btn-outline-secondary mb-5">Update</button>
+  </form>
+</div>
+{% endfor %} {% endblock %}
