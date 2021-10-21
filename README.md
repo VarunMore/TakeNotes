@@ -1,3 +1,3 @@
 # TakeNotes
 
-Notes Taking Webpage.
+Notes Taking Web-App.
